@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,12 +48,18 @@ public class MainActivity extends AppCompatActivity {
         btnSendSMS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(Intent.ACTION_SEND);
-                Uri uri = Uri.parse(txtSMSThisMobile);
-                intent.setData(uri);
-                startActivity(intent);
+                if(ContextCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.SEND_SMS},
+                            MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                }
+                SmsManager smgr = SmsManager.getDefault();
+                smgr.sendTextMessage("+79101234567",null,txtSMSThisMobile,
+                        null,null);
             }
         });
+
     }
 
     private void callMobile(){
@@ -60,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this,
                             new String[]{Manifest.permission.CALL_PHONE},
                             MY_PERMISSIONS_REQUEST_CALL_PHONE);
                 }
-                Uri  uri = Uri.parse("tel:+7 (495) 152-55-28");
+                // Uri  uri = Uri.parse("tel:+7 (495) 152-55-28");
+                Uri uri = Uri.parse(numberThisMobile);
                 intent = new Intent(Intent.ACTION_CALL, uri);
-                // Uri uri = Uri.parse(numberThisMobile);
                 startActivity(intent);
             }
         });
