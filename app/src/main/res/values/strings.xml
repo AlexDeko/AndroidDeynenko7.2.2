@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidDeynenko7.2.2</string>
+    <string name="number_mobile">Введите номер телефона</string>
+    <string name="sms">Введите текст для смс</string>
+    <string name="send_sms">Отправить смс</string>
+    <string name="call">Звонить</string>
+    <string name="number_placeholder">tell:%s</string>
+</resources>
