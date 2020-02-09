@@ -5,4 +5,5 @@
     <string name="send_sms">Отправить смс</string>
     <string name="call">Звонить</string>
     <string name="number_placeholder">tel:%s</string>
+    <string name="toast">Не получилось</string>
 </resources>
