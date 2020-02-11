@@ -6,4 +6,6 @@
     <string name="call">Звонить</string>
     <string name="number_placeholder">tel:%s</string>
     <string name="toast">Не получилось</string>
+    <string name="request_permission_true">Разрешение получено</string>
+    <string name="request_permission_false">Разрешение не получено</string>
 </resources>
